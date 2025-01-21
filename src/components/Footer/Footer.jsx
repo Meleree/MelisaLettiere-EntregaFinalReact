@@ -15,7 +15,12 @@ const Footer = () => {
           <img src={mailLogo} alt="Email" className="iconStyle" />
         </a>
       </div>
-
+      <p>
+        <a href="https://console.firebase.google.com/project/ecommerce-melere/overview?hl=es-419" target="_blank" rel="noopener noreferrer">
+          FIREBASE
+        </a>
+      </p>  
+      
       <p className="copyrightStyle">© 2024 Melere. Todos los derechos reservados.</p>
     </footer>
   );
