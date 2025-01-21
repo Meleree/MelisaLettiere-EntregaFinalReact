@@ -5,12 +5,6 @@ let userSchema = object({
   phone: number().positive().required("EL TELEFONO ES REQUERIDO"),
   email: string().email().required("EL MAIL ES REQUERIDO"),
   dni: number().positive().required("EL DNI ES REQUERIDO"),
-  emailRepeat: string()
-    .email("DEBE SER UN CORREO ELECTRONICO VÁLIDO")
-    .required("DEBE REPETIR EL CORREO ELECTRONICO")
-    .test("emails-coinciden", "AMBOS EMAILS DEBEN SER IGUALES", function(value) {
-      return value === this.parent.email;
-    }),
 })
 
 const validateForm = async(dataForm) => {

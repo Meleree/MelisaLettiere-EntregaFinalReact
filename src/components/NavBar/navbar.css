@@ -11,6 +11,8 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    gap: 10px;
+    padding: 10px;
   }
   .categories .category{
     list-style: none;
@@ -45,3 +47,23 @@
   .cartwidget .number-cartwidget{
     padding: 0 10px;
   }
+  .auth-links {
+    display: flex;
+    gap: 10px; 
+  }
+  
+  .auth-links .login-button,
+  .auth-links .register-button {
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: #6324d7fb;
+    border-color: #6324d7fb;
+    font-size: 16px;
+  }
+  
+  .auth-links .register-button {
+    color: #6324d7fb; 
+    border-color: #6324d7fb;
+  }
+  

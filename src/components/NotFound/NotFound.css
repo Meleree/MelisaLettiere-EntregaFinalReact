@@ -1,0 +1,19 @@
+.button-detail {
+    width: auto;
+    margin: 10px auto 0 auto;
+    padding: 10px;
+    background-color: #242424;
+    border-radius: 5px;
+    border: 2px solid #6324d7fb;
+    color: #6324d7fb;
+    display: block;
+    text-align: center;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .button-detail:hover {
+    border: 2px solid #240163fb;
+    color: #240163fb;
+  }
+  

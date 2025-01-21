@@ -30,6 +30,8 @@ const ItemDetail = ({ product }) => {
       <div className="text-detail-container">
         <h2 className="title-detail">{product.name}</h2>
         <p className="text-detail">{product.description}</p>
+        <p className="text-detail">Color: {product.color}</p>
+        <p className="text-detail">Talle: {product.size}</p>
         <p className="text-detail">Precio: ${product.price}</p>
         {
           showItemCount === true ? (

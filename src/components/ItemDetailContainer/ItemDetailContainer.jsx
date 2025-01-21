@@ -1,35 +1,45 @@
-import { useState, useEffect } from "react"
-import ItemDetail from "./ItemDetail"
-import { doc, getDoc } from "firebase/firestore"
-import db from "../../db/db.js"
-import { useParams } from "react-router-dom"
+import { useState, useEffect } from "react";
+import ItemDetail from "./ItemDetail";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../db/db.js";
+import { useParams, useNavigate } from "react-router-dom";
+import Spinner from '../Spinner/Spinner.jsx'
 
 const ItemDetailContainer = () => {
-  const [product, setProduct] = useState({})
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const { idProduct } = useParams();
+  const navigate = useNavigate();
 
-  const { idProduct } = useParams()
-
-  const getProduct = async() => {
+  const getProduct = async () => {
     try {
-      const docRef = doc(db, "products", idProduct)
-      const dataDb = await getDoc(docRef)
+      const docRef = doc(db, "products", idProduct);
+      const dataDb = await getDoc(docRef);
 
-      const data = { id: dataDb.id, ...dataDb.data() }
-
-      setProduct(data)
+      if (!dataDb.exists()) {
+        console.log("Producto no encontrado.");
+        navigate("/not-found", { replace: true });
+      } else {
+        const data = { id: dataDb.id, ...dataDb.data() };
+        setProduct(data); 
+      }
     } catch (error) {
-      console.log(error)
+      console.log(error);
+      navigate("/not-found", { replace: true });
+    } finally {
+      setLoading(false); 
     }
+  };
+
+  useEffect(() => {
+    getProduct();
+  }, [idProduct]);
+
+  if (loading) {
+    return <Spinner />; 
   }
 
-  useEffect(()=> {
-  
-    getProduct()
+  return product ? <ItemDetail product={product} /> : <div>Producto no encontrado.</div>; 
+};
 
-  }, [idProduct])
-
-  return (
-    <ItemDetail product={product} />
-  )
-}
-export default ItemDetailContainer
+export default ItemDetailContainer;
